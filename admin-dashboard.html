@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Yono Game Ka Mela</title>
+    <style>
+        body { font-family: Arial; margin:0; background:#f4f4f4; }
+        .sidebar { width: 220px; background:#222; color:white; position:fixed; height:100%; padding:20px; }
+        .main { margin-left: 250px; padding:30px; }
+        input, textarea, select { width:100%; padding:10px; margin:8px 0; border-radius:5px; }
+        button { padding:12px 25px; background:#ffd700; border:none; border-radius:5px; cursor:pointer; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Yono Admin</h2>
+    <p onclick="show('add')">➕ Add New Game</p>
+    <p onclick="show('manage')">📋 Manage Games</p>
+    <p onclick="logout()">🚪 Logout</p>
+</div>
+
+<div class="main">
+    <h1>Admin Dashboard</h1>
+
+    <div id="add">
+        <h2>Add New Game</h2>
+        <input type="text" id="name" placeholder="Game Name"><br>
+        <input type="text" id="bonus" placeholder="Bonus (₹50 Free)"><br>
+        <input type="file" id="img"><br>
+        <select id="label">
+            <option value="">No Label</option>
+            <option value="NEW">NEW</option>
+            <option value="HOT">HOT</option>
+        </select><br>
+        <textarea id="desc" placeholder="Description" rows="4"></textarea><br>
+        <button onclick="addGame()">Add Game</button>
+    </div>
+
+    <div id="manage" style="display:none;">
+        <h2>Manage Games</h2>
+        <p>Abhi games yahan list honge (baad mein update karenge)</p>
+    </div>
+</div>
+
+<script>
+    function show(page) {
+        document.getElementById('add').style.display = page === 'add' ? 'block' : 'none';
+        document.getElementById('manage').style.display = page === 'manage' ? 'block' : 'none';
+    }
+
+    function addGame() {
+        alert("Game Added Successfully!");
+    }
+
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "index.html";
+    }
+
+    show('add');
+</script>
+</body>
+</html>
