@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All Yono Games List - Yono Game Ka Mela">
+    <title>All Games - Yono Game Ka Mela</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); 
+            color: #fff; 
+        }
+        header {
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 { color: #ffd700; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        
+        .container { padding: 30px; max-width: 1300px; margin: 0 auto; }
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            font-size: 18px;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .game-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
+        }
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .game-info {
+            padding: 18px;
+        }
+        .bonus { color: #00ff88; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Yono Game Ka Mela</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="games.html">All Games</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 style="text-align:center; margin-bottom:30px; color:#ffd700;">All Yono Games</h1>
+        
+        <input type="text" class="search-bar" placeholder="Search games..." onkeyup="searchGames()">
+
+        <div id="games-container" class="games-grid"></div>
+    </div>
+
+    <script>
+        const allGames = [
+            { name: "Diwa Win", bonus: "₹50 Free", img: "https://via.placeholder.com/300x200/ff00cc/fff?text=DIWA+WIN" },
+            { name: "Jaiho 777", bonus: "₹52 Bonus", img: "https://via.placeholder.com/300x200/00ccff/fff?text=JAIHO+777" },
+            { name: "Rumble Rummy", bonus: "Upto ₹55", img: "https://via.placeholder.com/300x200/ffd700/000?text=RUMBLE+RUMMY" },
+            { name: "Diwa Vip", bonus: "₹71 Bonus", img: "https://via.placeholder.com/300x200/ff0066/fff?text=DIWA+VIP" },
+            { name: "Bingo 101", bonus: "₹51 Bonus", img: "https://via.placeholder.com/300x200/00ff88/000?text=BINGO+101" },
+            { name: "Gogo Rummy", bonus: "₹52 Free", img: "https://via.placeholder.com/300x200/ffff00/000?text=GOGO+RUMMY" }
+        ];
+
+        function renderGames(games) {
+            const container = document.getElementById('games-container');
+            container.innerHTML = '';
+            
+            games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.innerHTML = `
+                    <img src="\( {game.img}" alt=" \){game.name}">
+                    <div class="game-info">
+                        <h3>${game.name}</h3>
+                        <p class="bonus">Bonus: ${game.bonus}</p>
+                        <a href="#" style="color:#ffd700;">Download Now →</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function searchGames() {
+            const query = document.querySelector('.search-bar').value.toLowerCase();
+            const filtered = allGames.filter(game => 
+                game.name.toLowerCase().includes(query)
+            );
+            renderGames(filtered.length ? filtered : allGames);
+        }
+
+        // Initial render
+        renderGames(allGames);
+    </script>
+</body>
+</html>
