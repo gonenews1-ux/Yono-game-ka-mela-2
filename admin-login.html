@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Yono Game Ka Mela</title>
+    <style>
+        body { font-family: Arial; background: #1a0033; color: white; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .box { background: #222; padding: 40px; border-radius: 15px; width: 350px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; }
+        button { width: 100%; padding: 15px; background: #ffd700; color: black; border: none; border-radius: 8px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Admin Login</h2>
+        <input type="text" id="user" placeholder="Username" value="admin"><br>
+        <input type="password" id="pass" placeholder="Password" value="admin123"><br><br>
+        <button onclick="login()">Login</button>
+        <p style="margin-top:15px; font-size:14px;">Default: admin / admin123</p>
+    </div>
+
+    <script>
+        function login() {
+            if(document.getElementById('user').value === "admin" && 
+               document.getElementById('pass').value === "admin123") {
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "admin-dashboard.html";
+            } else {
+                alert("Galat username ya password");
+            }
+        }
+    </script>
+</body>
+</html>
